@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rna/common_variables.dart';
+import 'package:rna/screens/result_screen.dart';
 import 'package:rna/widgets/input_manual.dart';
 
 class InputScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class InputScreenState extends State<InputScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: ListView(
         children: [
           Padding(
@@ -22,21 +24,38 @@ class InputScreenState extends State<InputScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Center(child: Switch(value: isManual, onChanged: (bool val){
-                  setState(() {
-                    isManual = val;
-                  });
-                })),
                 const Center(child: Text('Saisie de CL et Vd manuel?')),
-                Container(constraints: BoxConstraints(maxHeight: 200),
-                    child: isManual ? const InputManualWidget() : CommonVariables.drugWidget),
-                Container(constraints: BoxConstraints(maxHeight: 400),
-                    child: CommonVariables.serviceInputWidget),
-                SizedBox(height: 60,)
+                Center(
+                    child: Switch(
+                        value: isManual,
+                        onChanged: (bool val) {
+                          setState(() {
+                            isManual = val;
+                          });
+                        })),
+                SizedBox(height: 10),
+                isManual
+                    ? const InputManualWidget()
+                    : CommonVariables.drugWidget,
+                CommonVariables.serviceInputWidget,
               ],
             ),
           ),
+          Align(
+            alignment: Alignment.center,
+            child: ElevatedButton(onPressed: () {
+              _navigate(context);
+            }, child: Text("Calculer")),
+          )
         ],
+      ),
+    );
+  }
+  void _navigate(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultScreen(),
       ),
     );
   }

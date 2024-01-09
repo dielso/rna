@@ -12,15 +12,15 @@ abstract class Service {
 
 class Supplementary implements Service {
   int hours, minutes;
-  double lastDose, targetDose;
+  double lastDose, targetConcentration;
   double perfusionTime = 1;
 
-  Supplementary(this.hours, this.minutes, this.lastDose, this.targetDose);
+  Supplementary(this.hours, this.minutes, this.lastDose,
+      this.targetConcentration);
 
   @override
   Widget getGraphWidget() {
-    // TODO: implement getGraphWidget
-    throw UnimplementedError();
+    return SizedBox();
   }
 
   @override
@@ -31,9 +31,9 @@ class Supplementary implements Service {
         children: [
           SizedBox(
               child: Text(
-            'Dose: ${_calculateDose().toString()} mg',
-            style: const TextStyle(fontSize: 24),
-          )),
+                'Dose: ${_calculateDose().toStringAsFixed(1)} mg',
+                style: const TextStyle(fontSize: 24),
+              )),
         ],
       ),
     );
@@ -45,17 +45,24 @@ class Supplementary implements Service {
     double clearance = CommonVariables.userInput!.getCL();
     double vd = CommonVariables.userInput!.getVd();
     var ke = clearance / vd;
-    print(ke);
-    var time = minutes / 60 + hours;
+    print("CL = $clearance L/h");
+    print("Vd = $vd");
+    print("ke = $ke");
+    var time = minutes / 60 + hours; // time passed
     print(time);
-    var cti = (exp(perfusionTime * ke) - 1) /
-        exp(ke * perfusionTime) *
-        (lastDose / vd) /
-        ke;
+    // concentration à la fin de la première perfusion
+    var cti = (lastDose / (vd*perfusionTime)) / ke *
+        (1 - exp(-ke * perfusionTime));
+    print("Cti = $cti mg/L");
+    // concentration à la fin de la première perfusion + temps passé
     var ctd = cti * exp(-ke * time);
+    var remainingTargetConcentration = (targetConcentration -
+        ctd * exp(-ke * perfusionTime));
     print("Ctd = $ctd mg/L");
-    return ((targetDose - ctd * exp(-ke * perfusionTime)) /
-            (1 - exp(-ke * perfusionTime))) * ke * vd;
+    // drug intake per unit of time
+    var a = (remainingTargetConcentration * ke /
+        (1 - exp(-ke * perfusionTime)));
+    return a * perfusionTime * vd;
   }
 }
 

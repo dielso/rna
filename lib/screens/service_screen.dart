@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:rna/common_variables.dart';
-import 'package:rna/screens/input_screen.dart';
 import 'package:rna/screens/select_drug_screen.dart';
 import 'package:rna/widgets/input_sup.dart';
 
@@ -34,34 +33,37 @@ class ServiceSelectionList extends StatelessWidget {
       itemCount: services.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: SizedBox(
-            width: 100,
-            child: ElevatedButton(
-              onPressed: () {
-                CommonVariables.serviceInputWidget =  services[index].serviceWidget;
-                _navigate(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: services[index].color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+          title: Align(
+            alignment: Alignment.center,
+            child: SizedBox(
+              child: ElevatedButton(
+                onPressed: () {
+                  CommonVariables.serviceInputWidget =  services[index].serviceWidget;
+                  _navigate(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: services[index].color,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  minimumSize: const Size(0,200),
+                  maximumSize: const Size(400,double.infinity),
+                  elevation: 8.0,
                 ),
-                minimumSize: const Size(0,200),
-                elevation: 8.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    services[index].icon,
-                    size: 40,
-                  ),
-                  Text(
-                    services[index].name,
-                    style: const TextStyle(fontSize: 22),
-                  ),
-                  const SizedBox(width: 30),
-                ],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      services[index].icon,
+                      size: 40,
+                    ),
+                    Text(
+                      services[index].name,
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    const SizedBox(width: 30),
+                  ],
+                ),
               ),
             ),
           ),

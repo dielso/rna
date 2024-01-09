@@ -33,32 +33,35 @@ class DrugSelectionList extends StatelessWidget {
         return ListTile(
           title: Container(
             width: 100,
-            child: ElevatedButton(
-              onPressed: () {
-                CommonVariables.drugWidget = drugs[index].inputDrugWidget;
-                _navigate(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: drugs[index].color,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0),
+            child: Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                onPressed: () {
+                  CommonVariables.drugWidget = drugs[index].inputDrugWidget;
+                  _navigate(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: drugs[index].color,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20.0),
+                  ),
+                  minimumSize: const Size(0,200),
+                  elevation: 8.0,
                 ),
-                minimumSize: const Size(0,200),
-                elevation: 8.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Icon(
-                    drugs[index].icon,
-                    size: 40,
-                  ),
-                  Text(
-                    drugs[index].name,
-                    style: const TextStyle(fontSize: 22),
-                  ),
-                  const SizedBox(width: 30),
-                ],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Icon(
+                      drugs[index].icon,
+                      size: 40,
+                    ),
+                    Text(
+                      drugs[index].name,
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    const SizedBox(width: 30),
+                  ],
+                ),
               ),
             ),
           ),

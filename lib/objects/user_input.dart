@@ -11,9 +11,9 @@ abstract class UserInput {
 }
 
 class ManualInput implements UserInput {
-  final double CL, Vd;
+  final double cl, vd;
 
-  ManualInput(this.CL, this.Vd);
+  ManualInput(this.cl, this.vd);
 
   @override
   Widget getInputSummaryWidget() {
@@ -21,11 +21,11 @@ class ManualInput implements UserInput {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(child: Text('Vd: ${CL.toString()})')),
+          SizedBox(child: Text('Vd: $vd')),
           const SizedBox(
             width: 30,
           ),
-          SizedBox(child: Text('CL: ${Vd.toString()}')),
+          SizedBox(child: Text('CL: $cl')),
         ],
       ),
     );
@@ -33,12 +33,12 @@ class ManualInput implements UserInput {
 
   @override
   double getCL() {
-    return CL;
+    return cl;
   }
 
   @override
   double getVd() {
-    return Vd;
+    return vd;
   }
 }
 
@@ -51,8 +51,21 @@ class VancomycinPatientInput implements UserInput {
 
   @override
   Widget getInputSummaryWidget() {
-    // TODO: implement getInputSummaryWidget
-    throw UnimplementedError();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Text("Weight: $weight"),
+        const SizedBox(
+          width: 30,
+        ),
+        Text("sCr: $sCr"),
+        const SizedBox(
+          width: 30,
+        ),
+        Text("PMA: $pma"),
+      ],
+    );
   }
 
   @override
