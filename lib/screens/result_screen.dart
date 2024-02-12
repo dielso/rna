@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rna/common_variables.dart';
 
 class ResultScreen extends StatefulWidget {
-  ResultScreen({super.key});
+  const ResultScreen({super.key});
 
   @override
   ResultScreenState createState() => ResultScreenState();
@@ -19,12 +19,22 @@ class ResultScreenState extends State<ResultScreen> {
     }
     return Scaffold(
       appBar: AppBar(),
-      body: ListView(
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          CommonVariables.service!.getGraphWidget(),
-          CommonVariables.service!.getResultWidget(),
-          CommonVariables.userInput!.getInputSummaryWidget(),
-
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CommonVariables.service!.getGraphWidget(),
+          ),
+          Container(
+            width: 300,
+            padding: const EdgeInsets.all(8.0),
+              decoration: BoxDecoration(color: Colors.black.withOpacity(0.05), borderRadius: const BorderRadius.all(Radius.circular(10.0))),
+              child: CommonVariables.service!.getResultWidget()),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: CommonVariables.userInput!.getInputSummaryWidget(),
+          ),
         ],
       ),
     );

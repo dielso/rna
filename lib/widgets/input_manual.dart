@@ -24,7 +24,7 @@ class InputManualWidgetState extends State<InputManualWidget> {
       child: Column(
         children: [
           const Text(
-            'Variables',
+            'Variables PK',
             style: TextStyle(
                 fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
@@ -35,6 +35,7 @@ class InputManualWidgetState extends State<InputManualWidget> {
             textInputAction: TextInputAction.next,
             onChanged: (value) {
               gCL = double.parse(value);
+              print(gCL);
               _updateInput();
             },
           ),

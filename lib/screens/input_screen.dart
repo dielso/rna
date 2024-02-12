@@ -4,7 +4,7 @@ import 'package:rna/screens/result_screen.dart';
 import 'package:rna/widgets/input_manual.dart';
 
 class InputScreen extends StatefulWidget {
-  InputScreen({super.key});
+  const InputScreen({super.key});
 
   @override
   InputScreenState createState() => InputScreenState();
@@ -33,7 +33,7 @@ class InputScreenState extends State<InputScreen> {
                             isManual = val;
                           });
                         })),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 isManual
                     ? const InputManualWidget()
                     : CommonVariables.drugWidget,
@@ -45,7 +45,7 @@ class InputScreenState extends State<InputScreen> {
             alignment: Alignment.center,
             child: ElevatedButton(onPressed: () {
               _navigate(context);
-            }, child: Text("Calculer")),
+            }, child: const Text("Calculer")),
           )
         ],
       ),
@@ -55,7 +55,7 @@ class InputScreenState extends State<InputScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => ResultScreen(),
+        builder: (context) => const ResultScreen(),
       ),
     );
   }

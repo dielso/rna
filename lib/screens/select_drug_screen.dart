@@ -31,7 +31,7 @@ class DrugSelectionList extends StatelessWidget {
       itemCount: drugs.length,
       itemBuilder: (context, index) {
         return ListTile(
-          title: Container(
+          title: SizedBox(
             width: 100,
             child: Align(
               alignment: Alignment.center,
@@ -74,7 +74,7 @@ class DrugSelectionList extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => InputScreen(),
+        builder: (context) => const InputScreen(),
       ),
     );
   }

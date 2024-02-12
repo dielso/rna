@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:rna/screens/select_drug_screen.dart';
 import 'package:rna/screens/service_screen.dart';
 
 void main() {
@@ -208,8 +207,8 @@ class InputFactorsWidgetState extends State<InputFactorsWidget> {
               Center(
                 child: ElevatedButton(
                   onPressed: () {
-                    var clearance;
-                    var vd;
+                    double clearance;
+                    double vd;
                     var t = 1;
                     if(!isManual){
                       vd = 0.628 * poids;

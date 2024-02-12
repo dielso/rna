@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rna/common_variables.dart';
 import 'package:rna/screens/select_drug_screen.dart';
+import 'package:rna/widgets/input_perfusion.dart';
 import 'package:rna/widgets/input_sup.dart';
 
 class SelectServiceScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class SelectServiceScreen extends StatelessWidget {
 class ServiceSelectionList extends StatelessWidget {
   final List<ServiceData> services = [
     ServiceData('Dosage Supplémentaire', Icons.local_hospital, Colors.yellow.shade100, const InputSupplementaryWidget()),
-    ServiceData('Perfusion Interrompu', Icons.access_time, Colors.red.shade100, const InputSupplementaryWidget()),
+    ServiceData('Perfusion Interrompu', Icons.access_time, Colors.red.shade100, const InputPerfusionWidget()),
     ServiceData('Schéma Posologique', Icons.assignment, Colors.orange.shade100, const InputSupplementaryWidget()),
   ];
 

@@ -28,6 +28,11 @@ class InputSupplementaryWidgetState extends State<InputSupplementaryWidget> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          const Text(
+            'Paramètres nouveau regimen',
+            style: TextStyle(
+                fontSize: 18.0, fontWeight: FontWeight.bold),
+          ),
           TextField(
             decoration:
                 const InputDecoration(labelText: 'Concentration cible (mg/L)'),
@@ -70,7 +75,7 @@ class InputSupplementaryWidgetState extends State<InputSupplementaryWidget> {
                   ),
                 ),
               ),
-              SizedBox(width: 15,),
+              const SizedBox(width: 15,),
               Flexible(
                 child: SizedBox(
                   width: 100,
